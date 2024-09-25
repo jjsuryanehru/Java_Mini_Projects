@@ -1,0 +1,245 @@
+import java.util.*;
+public class Odd_Even_Game {
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scan=new Scanner(System.in);
+		Random run=new Random();
+		
+		System.out.println("\n\t WELCOME TO ODD OR EVEN GAME ");
+		System.out.println("\n\t Game Rules : ");
+		System.out.println("\n\t  1. Two Player, once is Computer and another is your's... "
+						 + "\n\t  2. Enter the Your Name."
+						 + "\n\t  3. Choose Toss Odd or Even. "
+						 + "\n\t  4. If Toss to win you choose the Bat or Bowl"
+						 + "\n\t  5. After choose Bat or Bowl to Start the game...."
+						 + "\n\t  6. After First Half to play Second Half Game...."
+						 + "\n\t  7. If Your Score is Higher than Computer Score You Win..."
+						 + "\n\t  8. Starting from 1 to 6 ... "
+						 + "\n\n  ");
+		
+		System.out.print(" Enter the Name : ");
+		String name=scan.nextLine();
+		
+		System.out.print("\n Choose the Toss Odd or Even : ");
+		String choose=scan.nextLine();
+		
+		System.out.print("\n Enter the Number and You win the Toss : ");
+		int pltoss=scan.nextInt();
+		
+		int pctoss=run.nextInt(8);
+		System.out.print("\n Computer : "+pctoss+"\n\n");
+		
+		int toss=pltoss+pctoss;
+		
+		
+		scan.nextLine();
+		
+		String game="",plgame="";
+		int bating=0,total=0;
+		
+		
+		pctoss=run.nextInt(2);
+		
+		if(toss%2==0)
+		{
+			if(choose.equalsIgnoreCase("EVEN"))
+			{
+				System.out.println("You Win the Toss ");
+				System.out.print("Choose the Bat or Bowl : ");
+				plgame=scan.nextLine();
+			}
+			
+			else
+			{
+				System.out.println("You Loss Toss ");
+				
+				if(pctoss%2==0)
+				{
+					System.out.println("Computer Choose to Bating ");
+					game="Bat";					
+				}
+				
+				else
+				{
+					System.out.println("Computer Choose to Bowling ");
+					game="Bowl";
+					plgame="bat";
+				}
+			}
+			
+		}
+		
+		else
+		{
+			if(choose.equalsIgnoreCase("ODD"))
+			{
+				System.out.println("You Win the Toss ");
+				System.out.print("Choose the Bat or Bowl : ");
+				plgame=scan.nextLine();
+			}
+			
+			else
+			{
+				System.out.println("You Loss Toss ");
+				
+				if(pctoss%2==0)
+				{
+					System.out.println("Computer Choose to Bating ");
+					game="Bat";
+				}
+				
+				else
+				{
+					System.out.println("Computer Choose to Bowling ");
+					game="Bowl";
+					plgame="bat";
+				}
+			}
+		}
+		
+	while(bating<2)
+	{
+		int score=0,comp=0,pl_tot_score=0,pc_tot_score=0;
+		
+		bating++;
+		System.out.println("\n\n\t ------ Start the Game ------- \n");
+		if(plgame.equalsIgnoreCase("bating") || plgame.equalsIgnoreCase("bat"))
+		{
+			System.out.println("\n You Are Bating... ");
+			System.out.println("\n Computer is Bowling... ");
+		}
+		else
+		{
+			System.out.println("\n Computer is Bating... ");
+			System.out.println("\n You Are Bowling... ");
+		}
+		
+		while(true)
+		{
+			
+			System.out.print("\n\nEnter the Score : ");
+			score=scan.nextInt();
+			
+			if(score>0 && score<=6)
+			{
+				score+=0;
+				comp=run.nextInt(6);
+				if(comp!=0)
+					System.out.println("\nComputer Score : "+comp);
+				else
+				{
+					comp=1;
+					System.out.println("\nComputer Score : "+comp);
+				}
+			}
+			else
+			{
+				score=0;
+				System.out.println("You Enter a Wrong Number... \nPleace Enter the 1 to 6  ");
+				bating--;
+				break;
+			}
+
+		if(bating==1)
+		{
+			if(score==comp)
+			{
+				if(plgame.equalsIgnoreCase("bat") || plgame.equalsIgnoreCase("bating"))
+				{
+					System.out.println("\n\t *** You are Out.. ***");
+					System.out.println("\nYour Score is "+pl_tot_score+" runs");
+					total=pl_tot_score;
+					plgame="Bowl";
+					System.out.println("\n\n\t --- computer Target is "+(total+1)+" runs ---");
+					break;
+				}
+				else
+				{
+					System.out.println("\n\t *** Computer is Out.. ***");
+					System.out.println("\nComputer Score is "+pc_tot_score+" runs");
+					total=pc_tot_score;
+					plgame="bat";
+					System.out.println("\n\n\t --- Your Target is "+(total+1)+" runs ---");
+
+					break;
+				}
+			}
+			else {
+				pl_tot_score+=score;
+				pc_tot_score+=comp;
+			}
+		}
+			
+
+			
+			if(bating==2)
+			{
+				if(score!=comp){
+					pl_tot_score+=score;
+					pc_tot_score+=comp;
+				}
+
+				if(plgame.equalsIgnoreCase("bat") || plgame.equalsIgnoreCase("bating"))
+				{
+					
+
+					
+					if(score==comp)
+					{
+						if(pl_tot_score<total)
+						{
+								System.out.println("You are Out..");
+								System.out.println("\n\n\t ------ Your Loss the match to "+(total-pl_tot_score)+" runs -------");
+								break;
+						}
+						else if(pl_tot_score==total)
+						{
+							System.out.println("You are Out..");
+							System.out.println("\n\n\t ------ Draw Match (your Score is +"+pl_tot_score+" runs and Computer Score is "+total+" runs -------");
+							break;
+						}
+						
+					}
+					else if(pl_tot_score>total)
+					{
+						System.out.println("\n\n\t --------  You win the Match... --------");
+						break;
+					}
+					
+					
+				}
+				else {
+
+					
+					 if(score==comp)
+					{
+						if(pc_tot_score<total)
+						{
+								System.out.println("\n\n\t ------ Your Win the match to "+(total-pc_tot_score)+" runs -------");
+								break;
+						}
+						else if(pc_tot_score==total)
+						{
+							System.out.println("\n\n\t ------ Draw Match (your Score is +"+total+" runs and Computer Score is "+pc_tot_score+" runs -------");
+							break;
+						}
+						
+					}
+					 if(pc_tot_score>total)
+						{
+							System.out.println("\n\n\t --------  You Loss the Match... --------");
+							break;
+						}
+				}
+			}
+				
+		}
+		
+	}		
+	
+	scan.close();
+	
+	}
+
+}

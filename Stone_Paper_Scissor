@@ -1,0 +1,152 @@
+import java.util.*;
+
+public class Stone_Paper_Scissor {
+
+	public static void main(String[] args) {
+
+		// Scanner class to object creation
+		Scanner scan=new Scanner(System.in);
+		
+		// Random class to object creation
+		Random run=new Random();
+		
+		// USER TO FOLLOW THE RULES : 
+		System.out.println("\n\t WELCOME TO STONE, PAPER, SCISSOR GAME ");
+		System.out.println("\n\t Game Rules : ");
+		System.out.println("\n\t  1. Two Players, once is Computer and another is your's... "
+						 + "\n\t  2. Enter the Your Name and Please Enter a Name for Computer to wishers..."
+						 + "\n\t  3. Enter the String for [ Stone, Paper, Scissor ]. "
+						 + "\n\t  4. If Enter invalid String again to get the String to enter... "
+						 + "\n\t  5. After Start the Game to win Add a Points.... "
+						 + "\n\t  6. Who's are reached 3 Points to Win the Match... "
+						 + "\n\n  ");
+		
+		
+		// Computer Random to Play 
+		String[] arr= {"STONE","PAPER","SCISSOR"};
+
+		
+		// User to Play
+		System.out.print("\n\n Enter Your Name : ");
+		String user_name=scan.nextLine();
+		System.out.print("\n Pleace Enter Your Computer Name : ");
+		String Pc_name=scan.nextLine();
+		
+		System.out.println("\n\n\t ------ ARE YOU READY ------ ");
+		System.out.println("\n\t ------ THE GAME IS START NOW ------ ");
+
+		
+		int pcpoint=0,userpoint=0;
+		while(true)
+		{
+			
+			// user to get input
+			System.out.print("\n\n "+user_name+" enter your String : ");
+			String user_play=scan.nextLine();
+			
+			user_play=user_play.toUpperCase();
+	
+			// Computer to get input
+			String pc_play=arr[run.nextInt(arr.length)];
+			System.out.print("\n "+Pc_name+" enter your String : "+pc_play);
+			
+			// USER INPUT STONE...
+			if( 	(user_play.equals("STONE") 	)&& 
+			(	( pc_play.equals("STONE") || pc_play.equals("PAPER") || pc_play.equals("SCISSOR") )	 )	)
+				
+			{
+				if(pc_play.equals("STONE"))
+				{
+					System.out.println("\n\n\t ---- No Points.... ---- ");
+				}
+				else if(pc_play.equals("PAPER"))
+				{
+					System.out.println("\n\n\n "+user_name+", you are out....");
+					System.out.println("\n\t ---- "+Pc_name+", you are get a Point.... ---- ");
+					pcpoint++;
+				}
+				else
+				{
+					System.out.println("\n\n\n "+Pc_name+", you are out....");
+					System.out.println("\n\t ---- "+user_name+", you are get a Point.... ---- ");
+					userpoint++;
+				}
+			}
+			
+			
+			// USER INPUT PAPER... 
+			else if( 	(user_play.equals("PAPER") 	)&& 
+			(	( pc_play.equals("STONE") || pc_play.equals("PAPER") || pc_play.equals("SCISSOR") )	 )	)
+						
+			{
+					if(pc_play.equals("PAPER"))
+					{
+						System.out.println("\n\n\t ---- No Points.... ---- ");
+					}
+					else if(pc_play.equals("SCISSOR"))
+					{
+						System.out.println("\n\n\n "+user_name+", you are out....");
+						System.out.println("\n\t ---- "+Pc_name+", you are get a Point.... ---- ");
+						pcpoint++;
+					}
+					else
+					{
+						System.out.println("\n\n\n "+Pc_name+", you are out....");
+						System.out.println("\n\t ---- "+user_name+", you are get a Point.... ---- ");
+						userpoint++;
+					}
+			}
+			
+			
+			// USER INPUT SCISSOR...
+			else if( 	(user_play.equals("SCISSOR") 	)&& 
+			(	( pc_play.equals("STONE") || pc_play.equals("PAPER") || pc_play.equals("SCISSOR") )	 )	)
+				
+			{
+				if(pc_play.equals("SCISSOR"))
+				{
+					System.out.println("\n\n\t ---- No Points.... ---- ");
+				}
+				else if(pc_play.equals("STONE"))
+				{
+					System.out.println("\n\n\n "+user_name+", you are out....");
+					System.out.println("\n\t ---- "+Pc_name+", you are get a Point.... ---- ");
+					pcpoint++;
+				}
+				else
+				{
+					System.out.println("\n\n\n "+Pc_name+", you are out....");
+					System.out.println("\n\t ---- "+user_name+", you are get a Point.... ---- ");
+					userpoint++;
+				}
+			}
+			
+			
+			// USER INPUT INVALID
+			else
+			{
+				System.out.println("\n\n"+user_name+", You enter the String is invalid please enter correct String.....");
+			}
+			
+			// Show the Points user and computer
+			System.out.println("\n\n "+Pc_name+" : "+pcpoint);
+			System.out.println(" "+user_name+" : "+userpoint);
+			
+			if(pcpoint==3)
+			{
+				System.out.println("\n\n\t ************ "+Pc_name+", you are Win the Match.... ************");
+				break;
+			}
+			else if(userpoint==3)
+			{
+				System.out.println("\n\n\t ************ "+user_name+", you are Win the Match.... ************");
+				break;
+			}
+			
+			
+		}
+		
+
+	}
+
+}
